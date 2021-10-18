@@ -35,6 +35,11 @@ public class AccountExample {
 		if(a1.equals(a2)) {
 			System.out.println("content is same");
 		}
+		
+		System.out.println("***********");
+		
+		System.out.println(rahulAcc); // object as argument to println
+		System.out.println(swethaAcc); // object as argument to println
 	}
 
 }

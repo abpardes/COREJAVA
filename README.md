@@ -283,8 +283,161 @@ r1.equals(r2); // should return true
 
 ===============
 
+every class in java extends/ inherited/ is a sub-class from java.lang.Object class
+
+a1.equals(a2)
+
+Object.class
+ public boolean equals(Object obj) {
+        return (this == obj); // this is a1 and a2 is passed as obj
+ }
+
+
+==============
+static methods can access static variables but not instance variables;
+static methods called using Class Name; no need to create object
+
+==========================
+System.out.println(rahulAcc); // com.cisco.prj.entity.Account@6d06d69c
+
+=============================================================================
+
+Array of primitive types
+
+int[] data = new int[3];
+
+int[] values = {5,3,77,22};
 
 
 
+Arrays are reference type like class/ memory is always on heap area
+
+-------------------------------------------------------------------------
+
+
+Relationship between objects:
+1) Generalization and Specialization
+2) Realization
+3) Association
+4) Uses A 
+
+----------------------------------
+
+Java Tools used in application development
+
+1) Checkstyle
+Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. 
+* Naming Conventions ==> Class name should start with upper case and follow CamelCase Notation
+variable and methods ==> start with lowercase and use camelcase
+constants ==> only uppercase characters and follow SNAKE case  MAX_AGE = 100
+
+* comments
+* spacing
+
+2) PMD / SpotBugs / findBugs
+PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, copy and paste code, and so forth.
+
+3) ANT / Maven / Gradle
+ manage dependecies for project; configure plugins for development and deployment
+ 
+4) Jenkis ==> CI / CD
+
+============
+
+Generalization and Specialization ==> IS A Relationship
+
+Tv IS A product
+Mobile IS A product
+
+
+Inheritance is used to acheive "Generalization and Specialization" relationship
+
+In Java we use extends keyword to achevie this.
+
+----------------------------------
+
+class Product {
+
+}
+
+class Tv extends Product {
+
+}
+
+class Mobile extends Product {
+
+}
+
+----------------------------------
+
+Constructors and Inheritance 
+
+public class Product {
+	public Product() {
+		s.o.p("p1");
+	}
+	public Product(int id, String name) {
+		s.o.p("p2");
+	}
+}
+
+public class Tv extends Product {
+	public Tv() {
+		s.o.p("t1");
+	}
+
+	public Tv(int id, String name, String screen) {
+		s.o.p("t2");
+	}
+}
+
+===========
+
+
+public class Product {
+	public Product() {
+		s.o.p("p1");
+	}
+	public Product(int id, String name) {
+		s.o.p("p2");
+	}
+}
+
+public class Tv extends Product {
+	public Tv() {
+		s.o.p("t1");
+	}
+
+	public Tv(int id, String name, String screen) {
+		super(id, name); // invoke base class constructor
+		s.o.p("t2");
+	}
+}
+
+===========
+
+Inheritance and methods
+
+
+class Product {
+	public double getPrice() {
+		return 999.00;
+	}
+}
+
+class Tv extends Product {
+	public double getPrice() {
+		return 5000.00;
+	}
+
+	public String getScreen() {
+		return "OLED";
+	}
+}
+
+
+Product p = new Tv(); // upcasting
+p.getPrice(); // 5000.00
+p.getScreen(); // ERROR ==> Product reference can't send this message to Tv
 
 

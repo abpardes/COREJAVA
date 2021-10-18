@@ -41,4 +41,11 @@ public class Account {
 		Account acc = (Account) obj;
 		return this.accNo.equals(acc.accNo);
 	}
+
+	@Override
+	public String toString() {
+		return "Account [accNo=" + accNo + ", balance=" + balance + "]";
+	}
+	
+	
 }
