@@ -443,3 +443,27 @@ p.getScreen(); // ERROR ==> Product reference can't send this message to Tv
 =============
 
 
+Task:
+Time.java
+
+public class Time {
+	private int hours;
+	private int min;
+	...
+}
+
+
+TimeExample.java
+
+public class TimeExample {
+	public static void main(String[] args) {
+		Time t1 = new Time(3,45);
+		Time t2 = new Time(2, 30);
+
+		Time t3 = Time.addtime(t1,t2); // method has to create a new time instance; compute and return time object
+
+		System.out.println(t1.getHours() + " : " + t1.getMin()); // 3 : 45
+		System.out.println(t2.getHours() + " : " + t2.getMin()); // 2 : 30
+		System.out.println(t3.getHours() + " : " + t3.getMin()); // 6 : 15
+	}
+}
