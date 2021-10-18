@@ -155,6 +155,7 @@ Example.java
 
 public class Example {
 	public static void main(String[] args) {
+
 		Account rahulAcc = new Account();
 		Account swethaAcc = new Account();
 		rahulAcc.deposit(5000);
@@ -164,3 +165,126 @@ public class Example {
 }
 
 javac Example.java ==> Example.class
+
+
+===
+java Example
+
+Classloader loads classes from secondary storage / Network to primary [RAM]
+makes use of CLASSPATH env variable
+
+Example: set classpath=.;c:\abc\libraries
+
+
+
+"new" keyword is for DMA ==> similar to malloc / calloc of "C" or "new" in C++ ==> Memory on HEAP
+
+
+rahulAcc.deposit(5000); ==>  deposit(rahulAcc, 5000);
+
+context.behaviour(argmunents);
+
+tv.on();
+tv.changeChannel(424);
+
+ac.on();
+ac.increase(1);
+
+========================
+
+Logically grouping of objects/classes in enterprise application
+
+1) Entity / Domain / Model classes
+	they represent business data; used to map to persistent store [ RDBMS / NoSQL]
+	entity <--> database table
+
+	Customer, Product, Order, Supplier, Payment
+
+2) DAO classes ==> Data Access Object [ DAL]
+	they are used to Perform CRUD [CREATE READ UPDATE and DELETE ]operations on entities 
+	RDBMS --> SQL code like "insert into customers, select * from cutomers"
+
+3) Business classes
+4) Service classes ==> acts as a facade over DAO and Business 
+5) Exception classes ==> to represent any abnormal condition in application
+6) UI classes ==> user interface classes [ Android / Web application / Standalone client]
+
+
+package ==> in java is a folder to logically group classes; also to avoid ambiquity 
+
+package java.sql;
+
+public class Date {
+
+}
+
+package java.util;
+
+public class Date {
+
+}
+
+---------------------------
+
+import java.util.Date;
+
+Date d = new Date();
+
+
+=======================
+
+Garbage Collection in Java:
+
+"new" keyword is used to create object; ==> allocates memory on heap area;
+
+memory is released in Java by Garbage collector; we don't use "free" or "delete"
+
+======
+
+===================
+
+Constructors:
+1) special methods which has the same name as that of class
+2) compiler creates default constructor if none is written
+3) used for initialization; called on object creation
+4) we can;t explicitly call it
+5) constructors can be overloaded
+
+default, parameterized, copy constructor
+
+
+=========
+
+
+Requirement: need to have a count of how many instances of Account is being created.
+
+==========
+
+Object identity [ == vs equals()]
+
+== is used to compare refernces
+
+equals() should be used to compare content of objects
+
+
+Rectangle r1 = new Rectangle(4,5);
+
+Rectangle r2 = new Rectangle(4,5);
+
+
+Rectangle ref = r1;
+
+ref == r1; // true
+
+
+r1 == r2; // false
+
+r1.equals(r2); // should return true
+
+===============
+
+
+
+
+
+
