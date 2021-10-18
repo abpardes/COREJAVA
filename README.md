@@ -12,14 +12,13 @@ Email: banuprakashc@yahoo.co.in
 
 https://www.linkedin.com/in/banu-prakash-50416019/
 
-https://github.com/BanuPrakash/CORE_JAVA
+https://github.com/BanuPrakash/COREJAVA
 
 ---------------------
 
 Softwares Required:
 1) Java 8
-	https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html
-
+https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html
 
 2) Eclipse IDE for Enterprise Java Developers: 
 	https://www.eclipse.org/downloads/packages/release/2020-03/m1/eclipse-ide-enterprise-java-developers
