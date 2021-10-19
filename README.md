@@ -450,6 +450,14 @@ public class Time {
 	private int hours;
 	private int min;
 	...
+
+	public static Time addtime(Time t1, Time t2) {
+		Time t = new Time();
+		t.setHours(t1.getHours() + t2.getHours());
+
+		...
+		return t;
+	}
 }
 
 
@@ -467,3 +475,146 @@ public class TimeExample {
 		System.out.println(t3.getHours() + " : " + t3.getMin()); // 6 : 15
 	}
 }
+
+====================
+
+Day 1 Recap:
+class, Object, instance variable, static variables, instance methods, static methods
+constructors, == vs equals(), toString()
+
+Generalization and Specialization ==> Inheritance ==> extends keyword, super()
+Dynamic binding / Polymorphism, OCP, upcasting and downcasting
+
+Reflection API java.lang.reflect package
+getClass(), getMethods() [ includes inherited methods also] , getDeclaredMethods() [ methods only of that class - inherited]
+Normally:
+context.method();
+using reflection API:
+method.invoke(context);
+
+================================
+
+Day 2:
+
+* abstract
+
+abstract class ==> mark a class as abstract if you need to prevent object creation from that class; they are too generic
+doesn;t exist in real world; just meant for generalization
+Example: Account, Product
+public abstract class Product {
+
+new Product(111,"Dummy", 55663.22); // can't instantiate a Product
+
+abstract methods ==> incomplete methods ==> Pure virtual function ==> no body
+
+============
+
+* final
+
+final class ==> can't inherit
+
+final methods ==> can't override
+
+class Account {
+	final boolean login(user, pwd) {
+
+	}
+}
+
+class SavingsAccount extends Account {
+	boolean login(user, pwd) { // ERROR
+
+	}
+}
+
+final for constants:
+
+public static final double PI = 3.14159; // constant
+
+PI = 4.3; // error
+
+
+final for constant pointers
+
+final int[] elems = {6,3,21}; 
+
+elems[0] = 99; // valid
+
+elems = new int[5]; // error
+
+--
+
+final Product p = new Tv(4,"name", 444, "type");
+
+p.setPrice(99999); // valid
+
+p = new Tv(6, ...) ; // error
+
+============================
+
+Realization Relationship
+
+Object will realize the behaviour specified by other in order to communicate.
+
+Done using interface.
+
+all methods in interface are public and abstract by default
+
+interface interfaceName {
+	abstract methods();
+}
+
+interface EmployeeDao {
+	void addEmployee(Employee e);
+	Employee getEmployee(int id);
+}
+
+Uses:
+1) DESIGN
+2) IMPLEMENTATION
+3) TESTING
+4) IntEGRATION
+5) Loose Coupling and Strategy pattern
+
+======================
+
+XML / properties / JSON as configuration files
+
+ClassLoader working
+Object, System, PrintStream
+MobileClient loaded
+String loaded
+MobileDao
+Mobile
+MobileDaoFactory
+MobileDaoMongoImpl
+
+===
+
+loadClass()
+findLoadedClass()
+findSystemClass()
+defineClass()
+
+=============
+
+
+MobileDaoDbImpl is not loaded into JVM
+
+=======
+
+Programatically loading classes into JVM:
+
+Class.forName("java.util.Date") ; // load Date class into JVM
+
+
+
+
+Class.forName("java.util.Date") ; // load Date class into JVM
+Class.forName("com.cisco.prj.dao.MobileDaoMongoImpl") ; // load MobileDaoMongoImpl class into JVM
+
+
+load class and create object:
+Class.forName("com.cisco.prj.dao.MobileDaoMongoImpl").newInstance();
+
+new MobileDaoMongoImpl();

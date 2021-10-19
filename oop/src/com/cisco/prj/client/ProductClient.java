@@ -14,6 +14,7 @@ public class ProductClient {
 		products[1] = new Mobile(2, "OnePlus 9", 45000.00, "4G"); // upcasting
 		products[2] = new Tv(3, "Onida", 3000.00, "CRT");
 		products[3] = new Mobile(4, "Nokia", 1000.00, "3G");
+//		products[4] = new Product(111,"Dummy", 55663.22);
 		// 80 types
 		printExpensive(products);
 
@@ -56,7 +57,7 @@ public class ProductClient {
 	// OCP ==> Closed for Change open for extension
 	private static void printExpensive(Product[] products) {
 		for (Product p : products) {
-			if (p.isExpensive()) {
+			if (p.isExpensive()) { // polymorphic
 				System.out.println(p.getName() + " costs " + p.getPrice() + " and is expensive");
 			} else {
 				System.out.println(p.getName() + " costs " + p.getPrice() + " and is cheap");

@@ -1,6 +1,6 @@
 package com.cisco.prj.entity;
 
-public class Product {
+public abstract class Product {
 	private int id;
 	private String name;
 	private double price;
@@ -30,7 +30,7 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public final double getPrice() {
 		return price;
 	}
 
@@ -38,7 +38,9 @@ public class Product {
 		this.price = price;
 	}
 	
-	public boolean isExpensive() {
-		return false;
-	}
+//	public boolean isExpensive() {
+//		return false;
+//	}
+	
+	public abstract boolean isExpensive();
 }
