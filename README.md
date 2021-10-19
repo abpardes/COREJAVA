@@ -618,3 +618,176 @@ load class and create object:
 Class.forName("com.cisco.prj.dao.MobileDaoMongoImpl").newInstance();
 
 new MobileDaoMongoImpl();
+
+===============================
+
+class PlantFactory {
+	public static Plant[] getPlants(String season) {
+		switch(season) {
+			case SUMMER:
+
+			case WINTER:
+
+			case RAINY:
+		}
+	}
+}
+
+
+Client:
+
+PlantFactory.getPlants("SUMMER");
+
+============================================
+
+interfaces for OCP
+
+==================================
+
+* Java supports single inheritance
+
+class Derived extends Base {}
+
+* can implement multiple interfaces
+
+class SomeClass implements AInterface, BInterface, CInterface {}
+
+
+=============
+
+Interface seggregation
+
+interface Swim {
+	swim();
+}
+
+interface Dance {
+	dance();
+}
+
+interface Fight {
+	fight();
+}
+
+// actor is capable to dance
+class Actor implements Dance {
+	dance() {...}
+}
+
+// hero is an actor is he is also capable to fight and swim
+// every actor knows to dance
+class Hero extends Actor implements Fight, Swim {
+	fight() {//}
+	swim() {...}
+}
+ 
+================================
+
+Anonymous class ==> class without a name
+
+interface Flyable {
+	void fly();
+}
+
+class Bird implements Flyable {
+	// state
+	// behaviour
+	public void fly() {
+		..
+	}
+}
+
+
+Bird b = new Bird("Eagle");
+Bird b = new Bird("Crow");
+
+
+Flyable f = new Flyable(); // error
+
+// f is an object of anonymous class
+Flyable f = new Flyable() {
+	public void fly() {
+		....
+	}
+};
+
+
+class Dummy1 implements Flyable {
+
+}
+class Dummy2 implements Flyable {
+	
+}
+
+=========================================
+
+Exception Handling
+
+-------------------
+
+In Java Exception is an object which gives info:
+1) What went wrong
+2) Why
+3) Where
+
+Every thread has an default exception handler. If exception are not caught in application DefaultHandler handles it;
+but thread dies
+
+
+An abnormal condition that arises during program execution is an exception.
+
+exceptions are broadly classified as "error" and "exception" type
+
+Error type of exceptions are exceptions which can't be handled during runtime. Application shutdown, fix it and re-run
+
+1) java.lang.StackOverflowError
+2) java.lang.UnsatisfiedLinkError
+3) OutofMemoryError
+
+Exception type of "exceptions" are classified into "checked type" and "unchecked type" of exception
+
+unchecked type of exceptions:
+1) Compiler doesn't enforce programmer to handle it
+int result = x / y;
+
+2) Examples: ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, ClassCastException
+
+3) These exceptions can be prevented by just using conditional statemnet
+if(y != 0) {
+	int result = x / y;
+}
+
+if (p instanceof Tv) {  
+	Tv t = (Tv) p; // downcasting
+	System.out.println(t.getScreenType());
+}
+
+if(p != null) {
+	p.setPrice(3333);
+}
+
+4) All these exceptions are happening due to issues within JRE.
+
+CHECKED Type of Exceptions:
+
+1) Compiler enforces to handle with try-catch syntax
+
+try {
+	// code
+} catch(Exception ex) {
+
+}
+
+2) ClassNotFoundException, SQLException, IOException, ...
+
+3) These exceptions are due to reasons outside of JRE / Normally thrown by NativeCode 
+
+Add a user with already existing user email ==> Duplicate Key exception
+
+
+=====================
+
+User Defined exceptions why to use it?
+
+=================
+
