@@ -791,3 +791,111 @@ User Defined exceptions why to use it?
 
 =================
 
+
+Use ex.printStackTrace(); in development mode only
+Use ex.getMessage(); in production mode ==> gives only exception message
+
+=========
+finally block executes irrespective of exception occurs or not:
+compulsory execute code
+
+try {
+
+} catch(Exception ex) {
+
+} finally {
+
+}
+
+Always release resources in "finally" block
+
+=============================
+
+Generics in Java:
+
+class Rectangle <T> {
+	T width;
+	T breadth;
+
+}
+
+Rectangle<Integer> r1 = new Rectangle<Integer>(4,5);
+
+Rectangle<Double> r2 = new Rectangle<Double>(1.4,4.5);
+
+Rectangle<String> r3 = new Rectangle<String>("A","B");
+
+Generics can't be used with primitive types
+
+Integer is a typewrapper fot int
+Double is a typewrapper class for double
+Float for float
+Byte for byte
+
+Autoboxing:
+
+int x = 10;
+
+Integer iX = x; // primitive is boxed into Integer object
+
+int y = iX; // unboxing
+
+
+
+Java Collection Framework ==> Data Containers
+java.util package
+
+Array is a data container;
+* Size is fixed
+* needs Contiguos memory
+* adding and removing from arbitrary position needs more instructions
+
+JCF has 
+1) interfaces
+2) Implementation classes
+3) Algorithm classes
+
+
+Comparable:   class's natural comparision. compareTo() method is a part of class which is compared.
+
+Comparator: comparison based on user requirements; compare() logic is a part of client 
+
+Arrays is a utility class which contains methods like sort(), max(), ... which works based on Comparable or Comparator
+
+Arrays for array data type
+
+===========
+
+List
+
+* is a ordered collection
+* supports duplicate elements
+* supports index based operation
+* can be re-ordered ==> sort(), shuffle(), reverse()
+
+=====
+
+arrays are co-variant and hence not typesafe; 
+JavaCollection is not Co-variant
+
+Object[] elems = new String[3];
+
+elems[0] = "A";
+elems[1]  = "B";
+elems[2] = new Date(); / /@Runtime  ArrayStoreException
+
+if(elems[i] instanceof String) {
+ String s = elems[i];
+}
+
+===
+
+JavaCollection is not Co-variant
+
+List<Object> list = new ArrayList<String>(); // compilation error
+
+
+===========
+
+Resume @ 4:00
+

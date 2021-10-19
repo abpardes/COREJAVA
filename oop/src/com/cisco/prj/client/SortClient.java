@@ -9,7 +9,7 @@ public class SortClient {
 
 	public static void main(String[] args) {
 		String[] names = {"George", "Lee", "Chris", "Angelina", "Harry" };
-		
+		// Lee, Chris, Harry, George, Angelina ==> sorted by length
 		Utility.sort(names);
 		
 		for(String name : names) {

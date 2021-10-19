@@ -9,7 +9,8 @@ public class Checked2 {
 		try {
 			doTask();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 		
 		System.out.println("Bye!!");
