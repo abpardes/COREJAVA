@@ -892,10 +892,45 @@ if(elems[i] instanceof String) {
 
 JavaCollection is not Co-variant
 
-List<Object> list = new ArrayList<String>(); // compilation error
+ArrayList<Object> list = new ArrayList<String>(); // compilation error
+
+===============
+
+Set
+* unique elements
+* not ordered ==> ordering is based on differnt algorithm based on type of implementation
+* can't re-order [ can't sort, shuffle, reverse]
+* won't support index based operation
+
+HashSet is a Set implmentation uses hashcode and equals for identifying duplicates and postion of object in container
+
+* hashCode() ==> numerical value given to an object
+
+Rules of hashCode:
+1) similar objects should have same hashcode
+2) posibility is different objects can also have same hashcode
+
+class Rectangle {
+	w,b;
+
+	public int hashCode() {
+		return w * b;
+	}
+}
+
+Rectangle 4,5 ==> 20
+Rectangle 5,4 ==> 20
+Rectangle 2,10 ==> 20
+Rectangle 20,1 ==> 20
+Rectangle 1,20 ==> 20
+Rectangle 10,2 ==> 20
 
 
 ===========
 
-Resume @ 4:00
+TreeSet and Queue of Java Collection Framework
+
+====================
+
+ 
 
