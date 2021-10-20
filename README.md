@@ -1067,6 +1067,75 @@ Terminal operations : forEach, collect, reduce
 Data won't flow in streams if no terminal operations exist [ Lazy stream]
 
 
+===============================================================================
+XML and Annotation are metadata Java 1.5 version onwwards
+
+* Who uses it?
+1) Compiler
+@FunctionalInterface, @Override
+2) Classloader
+
+@Mobile(company="samsung")
+public class PubG extends Game {
+
+}
+
+Classloader can check and allow/prevent this class to be loaded into JVM
+
+3) RUNTIME ==> JRE
+
+ Runtime
+URL : http://localhost:8080/api/products
+
+@RequestMapping("http://localhost:8080/api/products")
+public static void method() {
+
+}
+
+* Where can I apply?
+1) METHOD
+2) TYPE
+3) PARAMETER
+4) FIELD
+5) CONSTRUCTOR
+
+---
+
+Annotations won't have variables and methods; it contains only properties
+
+public @interface Sample {
+	String value(); // value is a property and not a method
+}
+
+to set the value:
+
+@Sample(value="Hello") // setter
+
+to get the value:
+
+String s = Sample.value(); // getter
+
+---------------------------------------
+
+Using annotation we will Map Java class to Database Table and generate DDL and DML
+
+
+
+Avoid String concatination; String is immutable
+
+String s  = "Hello";
+
+s += "World";
+
+s += "123";
+
+s += "!!!";
+
+
+
+
+
+
 
 
 
