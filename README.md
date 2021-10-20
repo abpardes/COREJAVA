@@ -1131,11 +1131,67 @@ s += "123";
 
 s += "!!!";
 
+--
+Table.java
+Column.java
+Product.java
+Book.java
+SQLUtil.java
+SQLClient.java
+
+=========================================
+
+Java Concurrent Programming ==> Multithreaded application
+
+Process => Program in execution needs to have atleast one unit of work ==> Thread
+
+Thread -=> unit of work
+
+Single Threaded application we will have only one unit of work ==> Notepad, Calculator
+
+Multi-threaded appliation can have many units of work concurrently running ==> Eclipse, Word, Browser
+
+Word ==> Document editing, spell check, grammer check, auto save
+
+Browser ==> Network Thread / Image Render / Event Loop / text render
 
 
+Why Multithreaded application?
+1) Optimization of available resources [ CPU / HEAP area]
+2) Avoid starvation
+3) Making work independent of other works [ If Spellcheck fails, still use word for document editing]
+
+==========================
+Runnable.java
+
+intrerface Runnable {
+	void run();
+}
+
+Thread.java
+==> contains thread control methods and other utilities
+1) start()
+2) sleep(long ms)
+3) yield()
+4) join()
+5) interrupt()
+
+deprecated methods;
+6) stop()
+7) suspend()
+8) resume()
 
 
+while(dotask != false && employees.stream()...) {
+	update basic pay
+	update HRA
+	update DA
+	update Salary
+
+	take next employee for process
+}
 
 
+Other threads to kill this will set dotask = false
 
-
+JVM checks the status of Non-Daemon threads before it terminates

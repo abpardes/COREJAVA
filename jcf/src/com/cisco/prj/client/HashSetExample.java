@@ -1,5 +1,6 @@
 package com.cisco.prj.client;
 
+ 
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -11,7 +12,7 @@ public class HashSetExample {
 	public static void main(String[] args) {
 //		Set<Product> products = new HashSet<>();
 //		Set<Product> products = new TreeSet<>();
-		Set<Product> products = new TreeSet<>(new Comparator<Product>() {
+		Set <Product> products = new TreeSet<>(new Comparator<Product>() {
 			@Override
 			public int compare(Product o1, Product o2) {
 				int diff = Double.compare(o1.getPrice(), o2.getPrice());
