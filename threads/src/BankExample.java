@@ -4,11 +4,19 @@ public class BankExample {
 	public static void main(String[] args) {
 		Account acc = new Account(5000);
 		TransactionThread t1 = new TransactionThread(acc, "Sita", TransactionType.CREDIT, 2500);
-		TransactionThread t2 = new TransactionThread(acc, "\tGeetha", TransactionType.DEBIT, 2000);
+		TransactionThread t2 = new TransactionThread(acc, "\tGeetha", TransactionType.DEBIT, 46000);
 		TransactionThread t3 = new TransactionThread(acc, "\t\tRaj", TransactionType.CREDIT, 3000);
 		
-		t1.start();
+		
 		t2.start();
+		try {
+			Thread.sleep(5);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		
+		t1.start();
+		
 		t3.start();
 		
 		//Barrier ==> join() makes caller thread to wait for other threads to finish execution

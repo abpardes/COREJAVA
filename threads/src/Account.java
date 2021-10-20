@@ -24,7 +24,7 @@ public class Account {
 		this.balance = balance;
 	}
 	
-	public void deposit(String name, double amt) {
+	public synchronized void deposit(String name, double amt) {
 		System.out.println(name + " trying to deposit");
 		System.out.println(name  + " getting balance");
 		double bal = getBalance();
@@ -32,10 +32,25 @@ public class Account {
 		bal += amt;
 		System.out.println(name + " setting balance : " + bal);
 		setBalance(bal);
+//		notifyAll();
 	}
 	
-	public void withdraw(String name, double amt) {
+	public synchronized void withdraw(String name, double amt) {
 		System.out.println(name + " trying to withdraw");
+		int count = 0;
+		while(getBalance() < amt) {
+			if( count >= 2) {
+				return;
+			}
+			count++;
+			System.out.println("Insufficient Balance!!");
+			try {
+				wait(5000); // release a lock
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		System.out.println(name  + " getting balance");
 		double bal = getBalance();
 		System.out.println(name + " got balance : " + bal);
