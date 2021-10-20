@@ -4,13 +4,14 @@ public class ThreadExample {
 	public static void main(String[] args) {
 		System.out.println("Main starts !!!");
 		NumberThread t1 = new NumberThread(1, 100);
-		NumberThread t2 = new NumberThread(500, 800);
+		NumberThread t2 = new NumberThread(500, 2000);
 		NumberThread t3 = new NumberThread(1000, 1200);
+		
+//		t2.setDaemon(true);
 		
 		t1.start(); // Runnable or ready state
 		t2.start();
 		t3.start(); // main, t1, t2 and t3 are ready
-		
 		doTask();
 		
 		System.out.println("Main ends!!!");

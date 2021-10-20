@@ -1195,3 +1195,38 @@ while(dotask != false && employees.stream()...) {
 Other threads to kill this will set dotask = false
 
 JVM checks the status of Non-Daemon threads before it terminates
+
+============
+
+
+Thread Safety
+
+A member is said to be thread safe if it doesn't get corrupted in multi-threaded environment
+
+1) Local variables ==> reside on Stack ==> each thread has seperate stack and copy of local var ==> SAFE
+2) instance variables ==>  HEAP ==> shared by all threads  ==> NOT SAFE
+3) static variables ==> Metaspace [ class area / method area] ==> shared ==> NOT SAFE
+4) immutable objects ==> HEAP ==> SAFE
+
+public class Rectangle {
+	Rectangle(w,b ) {}
+
+	int getWidth() { .. }
+	int getBreadth() { ...}
+}
+
+Rectangle r1 = new Rectangle(3,4);
+
+5) volatile variables ==> SAFE
+
+Don't cache the variable; everytime read from main memory --> mutate --> write to main memory
+Declaring a variable volatile thus guarantees the visibility for other threads of writes to that variable
+
+Only atomic variables should be marked as volatile [ Boolean]
+int, float, double , .. are not atomic varibles
+
+int x = 10;
+x++; ==> moving of 32 bits to left
+
+=========================================
+
