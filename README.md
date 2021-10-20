@@ -1235,3 +1235,111 @@ Account, TransactionType, TransactionThread, BankExample
 
 wait() , notify() and notifyAll() for inter thread communication
 
+==================================
+
+ 
+
+	TransactionThread t1 = new TransactionThread(acc, "Sita", TransactionType.CREDIT, 2500);
+	TransactionThread t2 = new TransactionThread(acc, "\tGeetha", TransactionType.DEBIT, 46000);
+	TransactionThread t3 = new TransactionThread(acc, "\t\tRaj", TransactionType.CREDIT, 3000);
+	
+
+ 	Threads are created and destroyed;
+ 	Problems:
+ 	1) Latency involved in creating and destroying threads
+ 	2) Can't limit the number of threads
+
+ 	Solution: use Thread pool
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class PoolExample {
+
+	public static void main(String[] args) {
+		ExecutorService service = Executors.newFixedThreadPool(2);
+		service.submit(new NumberThread(1, 100));
+		service.submit(new NumberThread(101, 300));
+		service.submit(new NumberThread(301, 500));
+		service.submit(new NumberThread(501, 1000));
+		service.submit(new NumberThread(1000, 1200));
+		
+		service.shutdown(); // after this it can't take any new requests
+	}
+
+}
+
+
+============
+
+Java 5 introduced Lock API which can be used instead of synchronized.
+
+Issues with synchronized:
+1) only one lock per object; built-in mechanism
+
+Account
+	balance ==> different lock
+	profile ==> different lock
+
+2) Deadlock issues
+
+3) Owner thread can release the lock; Whichever thread has acquired a lock should release; complete method or wait()
+ ==> Should have AdminThread release the lock [ snatch from a thread and kill it]
+
+4) no timeout
+
+Deadlock issues:
+
+class BankingService {
+
+	public void transfer(Account from, Account to, double amt) {
+		synchronized(from) {
+			synchronized(to) {
+				from.withdraw(amt);
+				to.deposit(amt);
+			}
+		}
+	}
+}
+
+SA101 --> SA105  ==> 5000
+SA105 --> SA101 ==> 12000
+
+====
+
+Using Locking API:
+
+
+public class Account {
+	private double balance;
+	public Lock balanceLock = new ReentrantLock();
+
+
+
+class BankingService {
+
+	public void transfer(Account from, Account to, double amt) {
+		 if(from.balanceLock.tryLock()) {
+		   try {
+		   	if(to.balanceLock.tryLock()) {
+		   		try {
+		   			from.withdraw(amt);
+		   			to.deposit(amt);
+		   		} finally {
+		   			to.balanceLock.unlock();
+		   		}
+		   	}
+		    } finally {
+		 			from.balanceLock.unlock();
+		    }
+		 }
+	}
+}
+
+================
+
+Maven project and MySQL connectivity using JDBC
+
+===========================================
+
