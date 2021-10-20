@@ -1043,5 +1043,30 @@ public class A {
 }
 
 
+===========
+
+Java 8 streams ==> data can flow from Network / IO / Database / Collection
+on java 8 streams we can apply HOF:
+1) filter
+2) map
+3) reduce
+4) forEach
+5) flatMap
+...
+
+Commonly used FunctionalInterfaces for HOF on Java 8 stream:
+1) Consumer ==>   void accept(T t);
+2) Predicate ==>  boolean test(T t);
+3) Function ==>  R apply(T t);
+4) Bifunction ==>  R apply(T t, U u);
+
+
+Intermediate operations : filter, map, flatMap, skip, limit
+Terminal operations : forEach, collect, reduce
+
+Data won't flow in streams if no terminal operations exist [ Lazy stream]
+
+
+
 
 
