@@ -930,7 +930,118 @@ Rectangle 10,2 ==> 20
 
 TreeSet and Queue of Java Collection Framework
 
-====================
+=======================
 
- 
+Day 3
+
+Day 2 Recap : interface, Anonymous class, Comparable and Comparator interfaces
+Arrays, Collections 
+List interface: ArrayList and LinkedList implementations of List interface; Apache Collections and VAVR also also
+provide implementation of List interface
+
+HashCode and equals; Set interface ==> HashSet uses hashCode and equals()
+
+TreeSet identifies duplicates using Comparable or Comparator; SortedSet ==> RedBlack tree
+
+=============================
+
+Map container stores data in the form of Key/Value pair [ Dictionary , Registry]
+HashMap and TreeMap are implementations of Map interface
+
+
+=============================
+
+Java 8 introduced Functional Style of Programming
+
+OOP ==> methods are tightly coupled to state of object
+
+Functional Style of programming ==> functionalities are nto tightly coupled to state of object
+
+Functional Style of programming ==> we use High Order Functions.
+
+  High Order Functions are functions which
+  1) accept function as arguments
+  2) return a function
+  * treat function as first-class member like primitive or object
+
+  Commonly used HOF:
+  1) map
+  2) filter
+  3) reduce
+  4) forEach
+  5) limit
+  6) skip
+  7) flatMap
+
+  https://rxmarbles.com/
+
+
+@FunctionalInterface ==> interface with only one method to implement
+
+Example: 
+
+@FunctionalInterface
+interface Runnable {
+	void run();
+}
+
+@FunctionalInterface
+interface Comparator<T> {
+	int compare(T o1, T o2);
+}
+
+=======
+
+Lambda Expressions for implmentation of FunctionalInterface
+
+
+public class A {
+    public static void main(String[] args) {
+        Runnable r = new Runnable() {
+            public void run() {
+                System.out.println("Hello");
+            }
+        };
+    }
+}
+
+javac A.java
+A.class
+A$1.class
+
+javap A
+Compiled from "A.java"
+public class A {
+  public A();
+  public static void main(java.lang.String[]);
+}
+
+javap A$1
+Compiled from "A.java"
+class A$1 implements java.lang.Runnable {
+  A$1();
+  public void run();
+}
+
+
+=========
+Lambda:
+
+public class A {
+    public static void main(String[] args) {
+        Runnable r = () -> System.out.println("Hello");
+    }
+}
+
+
+javap -p A
+Compiled from "A.java"
+public class A {
+  public A();
+  public static void main(java.lang.String[]);
+  private static void lambda$main$0();
+}
+
+
+
 
