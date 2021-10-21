@@ -1591,7 +1591,15 @@ docker exec -it local-mysql bash
 #  mysql -u root -p
 Enter password:Welcome123
 
-mysql>
+mysql> create database cisco_core;
+mysql> use cisco_core;
 
-Resume @ 11:15
+mysql> create table products(id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, category VARCHAR(100));
+
+ 
+mysql> insert into products values (0, 'iPhone 12', 89000.00, "mobile");
+mysql> insert into products values (0, 'Sony Bravia', 120000.00, "tv");
+mysql> select * from products;
+
+----------------------------------------------------------------------------------------------
 
