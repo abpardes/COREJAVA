@@ -1343,3 +1343,255 @@ Maven project and MySQL connectivity using JDBC
 
 ===========================================
 
+Day 3 Recap:
+* Map, data container storing in the form of Key/Value ==> HashMap
+* Annotation ==> 
+	used by Compiler / ClassLoader / RUNTIME
+* Java 8 Lambda for FunctionalInterface, Streams ==> map(), filter; collect, forEach, reduce()
+* High Order Function 
+* Java Concurrency
+
+interface Runnable {
+	void run();
+}
+
+Thread class ==> start(), sleep(), join(), ...
+
+Thread Pool ==> Exectors.newFixedThreadPool(5); Executors.newCachedThreadPool()
+
+synchronized and Lock API
+
+==================================
+
+Day 4
+
+------
+
+Maven is a Java build tool
+
+ANT / Gradle are also java build tools
+
+build.xml of ant
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="oata.HelloWorld"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/HelloWorld.jar" fork="true"/>
+    </target>
+
+</project>
+
+
+Maven ==> dependency management, lifecycle management goals [ clean , compile, test, package, deploy]
+
+jar dependency ==> Java Archive ==> library
+
+<dependency>
+    <groupId>uber</groupId>
+    <artifactId>customer-module</artifactId>
+    <version>2.0.0</version>
+</dependency>
+<dependency>
+    <groupId>uber</groupId>
+    <artifactId>payment-module</artifactId>
+    <version>2.0.0</version>
+</dependency>
+
+
+<repositories>
+        <repository>
+          <id>jboss-public-repository</id>
+          <name>JBoss Public Maven Repository Group</name>
+          <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+      </repositories>
+
+==========
+
+Maven uses XML; gradle uses groovy language
+
+====================================
+
+Maven Set Compiler version:
+
+ <build>
+  	<plugins>
+  		<!--  compiler plugin -->
+  		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+  	</plugins>
+  </build>
+
+===================
+
+
+Unit testing
+
+TCER excel sheet => Test Case Expected Result
+
+TDD Test Driven Design ==> along with code write test cases; keep running the tests until all tests are passed
+
+Unit Testing Framework ==> JUnit , TestNg
+
+<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>4.13.2</version>
+	<scope>test</scope>
+</dependency>
+
+Testing ==> AAA [ Assemble Action Assert]
+
+1) <scope>test</scope>
+	this library is used only in testing environmen; not to be included in final production "jar" file
+
+2) <scope>provided</scope>
+	this library is required in production also; but don;t inclued in my final jar; because the target machine has this
+	use it for compilation
+
+=====================================
+
+
+JDBC ==> Java Database Connectivity ==> integration API
+
+JDBC is a collection of interfaces to interact with RDBMS;
+Implmentation classes are provided by database vendors [ MySQL / Oracle / H2 / Derby / Postgres]
+
+
+Date d = new Date();
+
+yyyy-MM-dd
+
+dd-MMM-yyyy
+
+String s = "Hello";
+
+VARCHAR
+
+VARCHAR2
+
+TEXT
+
+====
+
+Steps:
+
+1) load vendor classes into JVM
+	Class.forName("driverclass");
+
+	Class.forName("oracle.jdbc.OracleDriver");
+	Class.forName("com.mysql.jdbc.Driver");
+2) Establish a database connection java.sql.Connection --> interface
+	
+java.sql.Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+
+getConnection() is a factory method
+
+URL ==> jdbc:oracle:thin:@198.44.11.55:1521:emp_db
+
+con points to OracleConnection
+
+URL ==> jdbc:mysql://localhost:3306/emp_db
+con points to MySQLConnection
+
+3) Send SQL to database
+	3 interfaces for sending SQL
+	3.1) Statement
+		use this if SQL is fixed
+		select * from products
+
+	3.2) PreparedStatement
+		use this if SQL takes IN parameters
+
+		select * from accounts where userid = ?
+
+		insert into users values (?, ?, ?);
+
+		Avoid:
+		String u == read from input
+
+		"select * from accounts where userid = " + u; < == leads to SQL injection
+
+		OWASP
+		A03:2021 – Injection
+
+		String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
+
+		http://example.com/app/accountView?id=' or '1'='1
+
+		"SELECT * FROM accounts WHERE custID = or 1 = 1"
+
+
+	3.3) CallableStatement
+		to invoke stored procedures of database
+
+		CREATE PROCEDURE remove_emp (employee_id NUMBER) AS
+		   tot_emps NUMBER;
+		   BEGIN
+		      DELETE FROM employees
+		      WHERE employees.employee_id = remove_emp.employee_id;
+		   tot_emps := tot_emps - 1;
+		   END;
+		
+		form java 
+		remove_emp(33);
+
+	====
+
+	int executeUpdate(SQL) ; INSERT , DELETE and UPDATE
+
+		returns the number of rows effected	
+
+
+	ResultSet executeQuery(SQL); SELECT
+
+	===================================
+
+	4) close the connection
+	Do it in finally block
+
+========
+
+MySQL on local installation or on Docker
+
+Windows:
+docker run --name local-mysql –p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+Mac:
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+
+terminal:
+docker exec -it local-mysql bash
+
+#  mysql -u root -p
+Enter password:Welcome123
+
+mysql>
+
+Resume @ 11:15
+
